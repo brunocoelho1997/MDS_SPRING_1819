@@ -1,0 +1,86 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Getting Started: Serving Web Content</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+
+
+</head>
+<body>
+
+
+<form th:action="@{/setteams}" th:object="${team}" method="post" id="myForm">
+
+
+    <table width="100%" class="table table-striped table-hover listPlayers">
+        <tbody th:id="listP">
+            <tr th:each="ad,rowStat : *{listPlayers}">
+                <td>
+                    <input list="nameList" th:field="*{listPlayers[__${rowStat.index}__]}" th:value="${rowStat.index}" required/>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+
+
+    <datalist id="nameList">
+        <option value="Bruno">
+        <option value="Wandarley">
+        <option value="Gustavo">
+        <option value="Stefan">
+        <option value="Edmar">
+    </datalist>
+
+
+    <input type="button" id="addPlayer" value="Adicionar Elemento"/>
+    <input type="button" id="removePlayer" value="Remover Elemento"/>
+    <br>
+    <br>
+    <input type="submit"  class="btn btn-default" value = "concluido" />
+
+</form>
+
+
+
+
+
+
+
+</body>
+<script>
+
+    var nMaxElements = 4;
+
+    var listPlayers = $('#listP');
+    var numberPlayers = $('#listP tr').length;
+
+
+    $('#addPlayer').click(function() {
+
+        numberPlayers = $('#listP tr').length;
+
+        //alert(numberPlayers);
+
+        if(numberPlayers <= nMaxElements)
+        {
+            //alert(namePlayer);
+            listPlayers.append('<tr><td>' +
+                '<input list="nameList" id="listPlayers'+numberPlayers+'" name="listPlayers[' + numberPlayers + ']" required/>' +
+                '</td></tr>');
+        }
+    });
+
+    $('#removePlayer').click(function() {
+
+        numberPlayers = $('#listP tr').length;
+
+        if(numberPlayers > 1)
+        {
+            $('#listP>tr:last-child').before().remove();
+        }
+    });
+
+</script>
+</html>

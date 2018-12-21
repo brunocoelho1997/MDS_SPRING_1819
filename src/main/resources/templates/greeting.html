@@ -1,0 +1,79 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+<head> 
+    <title>Getting Started: Serving Web Content</title> 
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+
+
+</head>
+<body>
+    <p th:text="'Hello, ' + ${name} + '!'" />
+
+    <form id="myForm">
+
+
+        <input list="nameList" name="player1">
+
+        <datalist id="nameList">
+            <option value="Bruno">
+            <option value="Wandarley">
+            <option value="Gustavo">
+            <option value="Stefan">
+            <option value="Edmar">
+        </datalist>
+
+    </form>
+
+
+    <button onclick="addPlayer()">Adicionar Elemento</button>
+    <button onclick="removePlayer()">Remover Elemento</button>
+
+
+
+
+</body>
+<script>
+
+    var nElements = 1;
+
+    var nMaxElements = 4;
+
+    function addPlayer() {
+
+        if(nElements <= nMaxElements)
+        {
+            nElements++;
+
+            //alert("" + nElements);
+
+            var namePlayer = "player" + nElements;
+
+            //alert(namePlayer);
+
+
+            var input = $('<input>').attr({
+                list: 'nameList',
+                name: namePlayer
+            }).appendTo($('#myForm'));
+        }
+    }
+
+    function removePlayer() {
+
+        if(nElements >= 1)
+        {
+            nElements--;
+
+            //alert("" + nElements);
+
+            var namePlayer = "player" + nElements;
+
+            $( "[name = " + namePlayer + "]" ).remove();
+        }
+    }
+
+
+</script>
+</html>
