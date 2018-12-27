@@ -1,16 +1,53 @@
 <!DOCTYPE HTML>
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
-    <title>Getting Started: Serving Web Content</title>
+    <title>Agile Royale</title>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
-
+    <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 
+    <style>
+        .w3-lobster {
+            font-family: "Comic Sans MS", cursive, sans-serif;
+        }
+    </style>
 
 </head>
 <body>
 
-<p th:text="'Vamos dar inicio ao jogo! Vocês são a equipa, ' + ${teamNumber} + '!'" />
+<div class="w3-container w3-lobster text-center">
+    <img src="../img/logo.png">
+    <br>
+    <br>
+    <br>
+    <p class="w3-xxxlarge" th:text="'Vamos dar início ao jogo! Vocês são a equipa, ' + ${teamNumber} + '!'"></p>
+</div>
+
+<div class="container-fluid w3-container w3-lobster">
+    <div class="row">
+        <div class="col-sm-3"></div>
+        <div class="col-sm-6 text-center">
+
+            <p class="w3-xxxlarge"> Regras do Jogo</p>
+
+            <ul class="list-group">
+                <li class="list-group-item">10 Perguntas</li>
+                <li class="list-group-item">10 Pontos Iniciais</li>
+                <li class="list-group-item">Aposta Tipo Casino</li>
+                <li class="list-group-item">Ganhou: Pontos + Pontos (Aposta) </li>
+                <li class="list-group-item">Perdeu: Pontos - Pontos (aposta) </li>
+                <li class="list-group-item">Não Respondeu: -1 Ponto</li>
+                <li class="list-group-item">Grupo Vencedor = Supresa</li>
+
+            </ul>
+
+        </div>
+        <div class="col-sm-3"></div>
+    </div>
+</div>
 
 
 
