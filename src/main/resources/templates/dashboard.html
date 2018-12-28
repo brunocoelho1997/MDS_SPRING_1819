@@ -15,43 +15,184 @@
         }
     </style>
 
+    <script>
+        $(document).ready(function(){
+            $("#perguntas").hide();
+            $("#comecaJogo").click(function(){
+                $("#perguntas").toggle(1000);
+            });
+        });
+
+        function myFunction() {
+            location.reload();
+        }
+    </script>
 </head>
 <body>
 
-
-<div class="w3-container w3-lobster text-center">
-    <img src="../img/logo.png">
-    <br>
-    <br>
-    <br>
-    <p class="w3-xxxlarge">Definição dos Grupos</p>
-</div>
-
-<div class="container-fluid w3-container w3-lobster text-center">
-    <div class="row">
-        <div class="col-sm-3"></div>
-        <div class="col-sm-6 text-center">
-
-            <table width="100%" class="table table-striped table-hover listPlayers ">
-                <thead>
-                <p class="w3-xxxlarge">Equipas</p>
-                </thead>
-                <tbody>
-                <tr th:each="ad,rowStat : *{teams}">
-                    <td  th:text="'Equipa ' + ${rowStat.index + 1} + ': ' + ${ad} ">
-
-                    </td>
-                </tr>
-                </tbody>
-            </table>
-
-        </div>
-        <div class="col-sm-3"></div>
+    <div class="w3-container w3-lobster text-center">
+        <img src="../img/logo.png">
+        <br>
+        <br>
+        <br>
+        <p class="w3-xxxlarge">Definição dos Grupos</p>
     </div>
-</div>
 
+    <div class="container-fluid w3-container w3-lobster">
+        <div class="row">
+            <div class="col-sm-4"></div>
+            <div class="col-sm-4 text-center">
 
+                <table width="100%" class="table table-striped table-hover listPlayers ">
+                    <thead>
+                    <p class="w3-xxxlarge">Equipas</p>
+                    </thead>
+                    <tbody>
+                    <div th:each="ad,rowStat : *{teams}">
+                        <tr >
+                            <td class="w3-container w3-blue">
+                                <b  th:text="'Equipa ' + ${ad.getNumber()}" />
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <ul th:each="adPlayer,rowStatPlayer : *{ad.listPlayers}">
+                                    <li th:text="${adPlayer}"></li>
+                                </ul>
+                            </td>
+                        </tr>
+                    </div>
 
+                    </tbody>
+                </table>
+            </div>
+            <div class="col-sm-4"></div>
+        </div>
+
+        <div class="row">
+            <div class="col-sm-3"></div>
+            <div class="col-sm-6 text-center">
+                <button onclick="myFunction()" class="btn btn-info btn-lg">
+                    <span class="glyphicon glyphicon-refresh"></span> Refresh
+                </button>
+
+                <button id="comecaJogo" class="btn btn-success btn-lg">Começar Jogo</button>
+                <br>
+                <br>
+                <div id="perguntas">
+                    <table class="table table-striped">
+                        <tr >
+                            <td colspan="5"><b>1.Quais são os princípios do kanban?</b></td>
+                        </tr>
+                        <tr>
+                            <td>A: Cadeia de informações válidas ao desenvolvimento; Ilustrações técnicas</td>
+                            <td>B: Visualização da Cadeia de Valor; Desenvolvimento Evolucionário; Restrição do trabalho e seu progresso em torno das suas fases</td>
+                            <td>C: Visualização da cadeia de valor; Ilustrações técnicas; Restrição do trabalho e seu progresso em torno de suas fases</td>
+                            <td>D: Cadeia de informações válidas ao desenvolvimento; Desenvolvimento evolucionário</td>
+                            <td>E: Restrição do trabalho e seu progresso em torno das suas fases; Cadeia de informações válidas ao desenvolvimento; Desenvolvimento Evolucionário</td>
+                        </tr>
+
+                        <tr >
+                            <td colspan="5"><b>2.Quais das opções abaixo não descreve uma característica do Kanban?</b></td>
+                        </tr>
+                        <tr>
+                            <td>A: Transparência</td>
+                            <td>B: Adaptação</td>
+                            <td>C: Diversificação</td>
+                            <td>D: Disciplina</td>
+                            <td>E: Priorização</td>
+                        </tr>
+
+                        <tr >
+                            <td colspan="5"><b>3.É um dos princípios da metodologia Lean:</b></td>
+                        </tr>
+                        <tr>
+                            <td>A: Documentação formal</td>
+                            <td>B: Baka Yoke</td>
+                            <td>C: Dinamismo funcional</td>
+                            <td>D: Poka Yoke</td>
+                            <td>E: Shih Tzu</td>
+                        </tr>
+
+                        <tr >
+                            <td colspan="5"><b>4.Com relação à metodologia Lean, quais são os 5 “S”?</b></td>
+                        </tr>
+                        <tr>
+                            <td>A: Shinu; Shimaru; Shinjiru; Shaberu; Shiru</td>
+                            <td>B: Selecionar; Salvar; Servir; Sombrear; Segregar</td>
+                            <td>C: Simular; Sinalizar, Substituir; Subdelegar; Salientar</td>
+                            <td>D: Sort; Set in order; Shine; Standardize; Sustain</td>
+                            <td>E: Save; Sack; Satisfy; Say; Scater</td>
+                        </tr>
+                        <tr >
+                            <td colspan="5">
+                                <b>5.A Figura a seguir demonstra a atividade de qual característica do Lean?</b>
+                                <img src="../img/lean.jpg">
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>A: Poka Yoke</td>
+                            <td>B: Jidoka</td>
+                            <td>C: JIT (Just in Time)</td>
+                            <td>D: 5S</td>
+                            <td>E: Manutenção Produtiva Total</td>
+                        </tr>
+                        <tr >
+                            <td colspan="5"><b>6.Qual o diagrama que é muito utilizado no Lean?</b></td>
+                        </tr>
+                        <tr>
+                            <td>A: Diagrama de objetos</td>
+                            <td>B: Diagrama de barras</td>
+                            <td>C: Diagrama de pizza</td>
+                            <td>D: Diagrama de espaguete</td>
+                            <td>E: Diagrama de bolo Kasutera</td>
+                        </tr>
+                        <tr >
+                            <td colspan="5"><b>7.Qual dos princípios fundamentais apresentados não pertence ao MSF?</b></td>
+                        </tr>
+                        <tr>
+                            <td>A: Visão de projeto compartilhado</td>
+                            <td>B: Mais poderes aos membros da equipa</td>
+                            <td>C: Aprender com todas as experiências</td>
+                            <td>D: Foco no cliente</td>
+                            <td>E: Foco no negócio</td>
+                        </tr>
+                        <tr >
+                            <td colspan="5"><b>8.São metodologias com foco em em desenvolvimento:</b></td>
+                        </tr>
+                        <tr>
+                            <td>A: XP; Lean; MSF</td>
+                            <td>B: XP; Kanban; MSF</td>
+                            <td>C: XP; RUP; MSF</td>
+                            <td>D: RUP; MSF ; Lean</td>
+                            <td>E: Lean; MSF; RUP</td>
+                        </tr>
+                        <tr >
+                            <td colspan="5"><b>9.Quais são as três disciplinas assumidas pelo MSF?</b></td>
+                        </tr>
+                        <tr>
+                            <td>A: Gestão da disciplina de projeto; Gestão da disciplina de risco; Gestão da disciplina de software</td>
+                            <td>B: Gestão da disciplina de risco; Gestão da disciplina de sistemas; Gestão da disciplina de projeto</td>
+                            <td>C: Gestão da disciplina de software; Gestão da disciplina de risco; Gestão da disciplina de equipas</td>
+                            <td>D: Gestão da disciplina de sistemas; Gestão da disciplina de projeto; Gestão da disciplina de equipas</td>
+                            <td>E: Gestão da disciplina de aprendizado;  Gestão da disciplina de projeto; Gestão da disciplina de risco</td>
+                        </tr>
+                        <tr >
+                            <td colspan="5"><b>10.O MSF funciona sob dois modelos:</b></td>
+                        </tr>
+                        <tr>
+                            <td>A: Modelo de Equipa; Modelo de Processos</td>
+                            <td>B: Modelo de Processos; Modelo de Software</td>
+                            <td>C: Modelo de Software; Modelo de projetos</td>
+                            <td>D: Modelo de Disciplinas; Modelo de Equipas</td>
+                            <td>E: Modelo de Processos; Modelo de Disciplinas</td>
+                        </tr>
+                    </table>
+                </div>
+            </div>
+            <div class="col-sm-3"></div>
+        </div>
+    </div>
 
 </body>
 </html>

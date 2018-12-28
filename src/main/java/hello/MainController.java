@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import java.util.ArrayList;
@@ -20,6 +21,7 @@ public class MainController {
     @Autowired
     SystemManagement systemManagement;
 
+    int teamNumber = 1;
 
     @GetMapping("/dashboard")
     public String dashboard(@RequestParam(name="name", required=false, defaultValue="World") String name, Model model) {
@@ -46,24 +48,23 @@ public class MainController {
         return "setTeams";
     }
 
+    @PostMapping("/setteams")
+    public String addClient(Model model, @ModelAttribute("team") Team team, BindingResult bindingResult, RedirectAttributes attributes) {
+
+        System.out.println("\n\n\n team: " + team);
+        team.setNumber(teamNumber);
+        systemManagement.getTeamList().add(team);
+        teamNumber++;
+
+        return "redirect:/startgame?teamNumber=" + (teamNumber-1);
+    }
+
     @GetMapping("/removeteam")
     public String removeTeam(Model model, @ModelAttribute("teamNumber") int teamNumber) {
         systemManagement.getTeamList().remove(teamNumber-1);
         model.addAttribute("teams", systemManagement.teamList);
-        return "dashboard";
+        return "redirect:/dashboard";
     }
-
-
-
-    @PostMapping("/setteams")
-    public String addClient(Model model, @ModelAttribute("team") Team team, BindingResult bindingResult, RedirectAttributes attributes) {
-
-        System.out.println("\n\n\n\n\n\n\n team: " + team);
-        systemManagement.getTeamList().add(team);
-        model.addAttribute("teamNumber", systemManagement.getTeamList().size());
-        return "startGame";
-    }
-
 
     @GetMapping("/startgame")
     public String startGame(@RequestParam(name="teamNumber") String teamNumber, Model model) {
