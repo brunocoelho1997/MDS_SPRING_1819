@@ -30,6 +30,30 @@ public class MainController {
         return "dashboard";
     }
 
+    @GetMapping("/dashboarddemo1")
+    public String dashboarddemo1(Model model) {
+
+        List<Team> teamList = new ArrayList<>();
+
+        Team tmp = new Team();
+
+        tmp.getListPlayers().add("jogador1");
+        tmp.getListPlayers().add("jogador2");
+        tmp.getListPlayers().add("jogador3");
+        tmp.getListPlayers().add("jogador4");
+        tmp.setNumber(4);
+
+        teamList.add(tmp);
+        teamList.add(tmp);
+        teamList.add(tmp);
+        teamList.add(tmp);
+
+        model.addAttribute("teams", teamList);
+
+        return "dashboarddemo1";
+    }
+
+
     @GetMapping("/greeting")
     public String greeting(@RequestParam(name="name", required=false, defaultValue="World") String name, Model model) {
         model.addAttribute("name", name);

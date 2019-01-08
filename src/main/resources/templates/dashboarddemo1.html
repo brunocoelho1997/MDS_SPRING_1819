@@ -1,0 +1,125 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Agile Royale</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+
+    <style>
+        .w3-lobster {
+            font-family: "Comic Sans MS", cursive, sans-serif;
+        }
+    </style>
+
+    <script>
+        $(document).ready(function(){
+            $("#perguntas").hide();
+            $("#comecaJogo").click(function(){
+                $("#perguntas").toggle(1000);
+            });
+        });
+
+        function myFunction() {
+            location.reload();
+        }
+    </script>
+</head>
+<body>
+
+<div class="w3-container w3-lobster text-center">
+    <img src="../img/logo.png">
+    <br>
+    <br>
+    <br>
+    <p class="w3-xxxlarge">Definição dos Grupos</p>
+</div>
+
+<div class="container-fluid w3-container w3-lobster">
+    <div class="row">
+        <div class="col-sm-4"></div>
+        <div class="col-sm-4 text-center">
+
+            <table width="100%" class="table table-striped table-hover listPlayers ">
+                <thead>
+                <p class="w3-xxxlarge">Equipas</p>
+                </thead>
+                <tbody>
+                <div th:each="ad,rowStat : *{teams}">
+                    <tr >
+                        <td class="w3-container w3-blue">
+                            <b  th:text="'Equipa ' + ${ad.getNumber()}" />
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <ul th:each="adPlayer,rowStatPlayer : *{ad.listPlayers}">
+                                <li th:text="${adPlayer}"></li>
+                            </ul>
+                        </td>
+                    </tr>
+                </div>
+
+                </tbody>
+            </table>
+        </div>
+        <div class="col-sm-4"></div>
+    </div>
+
+    <div class="row">
+        <div class="col-sm-3"></div>
+        <div class="col-sm-6 text-center">
+            <button onclick="myFunction()" class="btn btn-info btn-lg">
+                <span class="glyphicon glyphicon-refresh"></span> Refresh
+            </button>
+
+            <button id="comecaJogo" class="btn btn-success btn-lg">Começar Jogo</button>
+            <br>
+            <br>
+            <div id="perguntas">
+                <table class="table table-striped">
+                    <tr >
+                        <td colspan="5"><b>1.QUESTAO?</b></td>
+                    </tr>
+                    <tr>
+                        <td>A: EA</td>
+                        <td>B: EB</td>
+                        <td>C: EC</td>
+                        <td>D: ED</td>
+                        <td>E: EC</td>
+                    </tr>
+
+                    <tr >
+                        <td colspan="5"><b>2.QUESTAO?</b></td>
+                    </tr>
+                    <tr>
+                        <td>A: EA</td>
+                        <td>B: EB</td>
+                        <td>C: EC</td>
+                        <td>D: ED</td>
+                        <td>E: EC</td>
+                    </tr>
+
+                    <tr >
+                        <td colspan="5"><b>.....</b></td>
+                    </tr>
+                    <tr>
+                        <td>A: ....</td>
+                        <td>B: ...</td>
+                        <td>C: ...</td>
+                        <td>D: ...</td>
+                        <td>E: ...</td>
+                    </tr>
+
+                </table>
+            </div>
+        </div>
+        <div class="col-sm-3"></div>
+    </div>
+</div>
+
+</body>
+</html>
