@@ -47,8 +47,61 @@
         </div>
         <div class="col-sm-3"></div>
     </div>
+
+
+    <form th:action="@{/setanswer}" th:object="${answer}" method="post" id="myForm">
+
+        <div class="row">
+            <div class="col-sm-3"></div>
+            <div class="col-sm-6 text-center">
+                Questão <input list="questions" th:field="*{question}" required/>
+                <br>
+                Resposta <input list="answers" th:field="*{answer}" required/>
+                <br>
+                Aposta <input list="bet" min="1" th:field="*{bet}" required/>
+                <br>
+                <input class="form-control" th:type="hidden" th:field="*{teamNumber}" />
+                <input type="submit"  class="btn btn-success" value = "Apostar" />
+            </div>
+            <div class="col-sm-3"></div>
+        </div>
+
+    </form>
+
 </div>
 
+<datalist id="questions">
+    <option value="1">
+    <option value="2">
+    <option value="3">
+    <option value="5">
+    <option value="6">
+    <option value="7">
+    <option value="8">
+    <option value="9">
+    <option value="10">
+</datalist>
+
+<datalist id="answers">
+    <option value="A">
+    <option value="B">
+    <option value="C">
+    <option value="D">
+    <option value="E">
+</datalist>
+
+<datalist id="bet">
+    <option value="1">
+    <option value="2">
+    <option value="3">
+    <option value="4">
+    <option value="5">
+    <option value="6">
+    <option value="7">
+    <option value="8">
+    <option value="9">
+    <option value="10">
+</datalist>
 
 
 

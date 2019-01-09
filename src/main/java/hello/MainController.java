@@ -5,10 +5,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.stereotype.Service;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
@@ -23,12 +20,6 @@ public class MainController {
 
     int teamNumber = 1;
 
-    @GetMapping("/dashboard")
-    public String dashboard(@RequestParam(name="name", required=false, defaultValue="World") String name, Model model) {
-        model.addAttribute("teams", systemManagement.teamList);
-
-        return "dashboard";
-    }
 
     @GetMapping("/dashboarddemo1")
     public String dashboarddemo1(Model model) {
@@ -50,8 +41,39 @@ public class MainController {
 
         model.addAttribute("teams", teamList);
 
+
+
+        /*
+        <!DOCTYPE html>
+        <html>
+        <body>
+
+        <h2>HTML Iframes</h2>
+        <p>You can use the height and width attributes to specify the size of the iframe:</p>
+
+        <iframe src="https://docs.google.com/spreadsheets/d/e/2PACX-1vSQ1QnzpFeFU8biZgnG6n_ff_X93LiLtojrfqSFG1P9-TUlfZqMybfXLsr0O_afyR3BmpLInDgtS1pC/pubhtml?gid=274706901&amp;single=true&amp;widget=true&amp;headers=false"
+
+        style="height:500px;width:500px;"
+
+        ></iframe>
+
+        </body>
+        </html>
+
+         */
+
+
         return "dashboarddemo1";
     }
+
+    @GetMapping("/dashboard")
+    public String dashboard(@RequestParam(name="name", required=false, defaultValue="World") String name, Model model) {
+        model.addAttribute("teams", systemManagement.teamList);
+
+        return "dashboard";
+    }
+
+
 
 
     @GetMapping("/greeting")
@@ -75,10 +97,11 @@ public class MainController {
     @PostMapping("/setteams")
     public String addClient(Model model, @ModelAttribute("team") Team team, BindingResult bindingResult, RedirectAttributes attributes) {
 
-        System.out.println("\n\n\n team: " + team);
         team.setNumber(teamNumber);
         systemManagement.getTeamList().add(team);
         teamNumber++;
+
+        System.out.println("\n\n\n team: " + team);
 
         return "redirect:/startgame?teamNumber=" + (teamNumber-1);
     }
@@ -94,7 +117,44 @@ public class MainController {
     public String startGame(@RequestParam(name="teamNumber") String teamNumber, Model model) {
         model.addAttribute("teamNumber", teamNumber);
 
+        Answer answer = new Answer();
+        answer.setTeamNumber(Integer.parseInt(teamNumber));
+
+        model.addAttribute("answer",answer);
+
+
         return "startGame";
+    }
+
+    @GetMapping("/clearallanswers")
+    @ResponseBody
+    public String clearAllAnswers(@RequestParam(name="teamNumber") String teamNumber, Model model) {
+
+        systemManagement.getAnsweList().clear();
+        return "Apagou todas as respostas para questão atual";
+    }
+
+    @PostMapping("/setanswer")
+    public String setAnswer(@ModelAttribute("answer") Answer answer, Model model) {
+
+        System.out.println("\n\n\n\n\n " + answer);
+
+        systemManagement.processAnswer(answer);
+
+        System.out.println("\n\n\n\n\n asnwer list " + systemManagement.getAnsweList());
+
+
+        return "redirect:/startgame?teamNumber=" + answer.getTeamNumber();
+
+    }
+
+    @GetMapping("/get_results")
+    @ResponseBody
+    public String get_statics(Model model) {
+
+        String results = systemManagement.getResults();
+        return results;
+
     }
 
 }

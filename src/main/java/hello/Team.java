@@ -7,9 +7,11 @@ public class Team {
 
     List<String> listPlayers;
     int number;
+    int totalPoints;
 
     public Team() {
         this.listPlayers = new ArrayList<>();
+        this.totalPoints = 10;
     }
 
     public List<String> getListPlayers() {
@@ -28,10 +30,20 @@ public class Team {
         this.number = number;
     }
 
+    public int getTotalPoints() {
+        return totalPoints;
+    }
+
+    public void setTotalPoints(int totalPoints) {
+        this.totalPoints = totalPoints;
+    }
+
     @Override
     public String toString() {
         return "Team{" +
                 "listPlayers=" + listPlayers +
+                ", number=" + number +
+                ", totalPoints=" + totalPoints +
                 '}';
     }
 }

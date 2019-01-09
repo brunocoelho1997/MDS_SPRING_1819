@@ -8,6 +8,7 @@
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    <script src="https://code.jquery.com/jquery-1.10.2.js"></script>
 
     <style>
         .w3-lobster {
@@ -21,6 +22,40 @@
             $("#comecaJogo").click(function(){
                 $("#perguntas").toggle(1000);
             });
+
+
+            $(".getAnswer").click(function(){
+                var opt = {
+                    type: 'GET',
+                    url: '/get_results'
+                }
+
+                $.ajax(opt).done(function (result) {
+
+                    $("#resultsString").text(result);
+
+                    /*
+
+
+                    var correctAnswers = $(".correctAnswer");
+                    //alert(correctAnswers.html());
+
+                    var i;
+                    for (i = 0; i < correctAnswers.length; i++) {
+                        var color = correctAnswers[i].style.background;
+                        //alert(color);
+                        if(color == "")
+                        {
+                            correctAnswers[i].style.background = "blue";
+                            break;
+                        }
+                    }
+
+*/
+
+                });
+            });
+
         });
 
         function myFunction() {
@@ -69,6 +104,8 @@
             <div class="col-sm-4"></div>
         </div>
 
+        <p id ="resultsString"></p>
+
         <div class="row">
             <div class="col-sm-3"></div>
             <div class="col-sm-6 text-center">
@@ -82,32 +119,33 @@
                 <div id="perguntas">
                     <table class="table table-striped">
                         <tr >
-                            <td colspan="5"><b>1.Quais são os princípios do kanban?</b></td>
+                            <td colspan="5"><b>1.Quais são os princípios do kanban?</b> <button class="btn btn-success btn getAnswer">Ver Resposta</button></td>
                         </tr>
                         <tr>
-                            <td>A: Cadeia de informações válidas ao desenvolvimento; Ilustrações técnicas</td>
+                            <td class="correctAnswer"> A: Cadeia de informações válidas ao desenvolvimento; Ilustrações técnicas </td>
                             <td>B: Visualização da Cadeia de Valor; Desenvolvimento Evolucionário; Restrição do trabalho e seu progresso em torno das suas fases</td>
                             <td>C: Visualização da cadeia de valor; Ilustrações técnicas; Restrição do trabalho e seu progresso em torno de suas fases</td>
                             <td>D: Cadeia de informações válidas ao desenvolvimento; Desenvolvimento evolucionário</td>
                             <td>E: Restrição do trabalho e seu progresso em torno das suas fases; Cadeia de informações válidas ao desenvolvimento; Desenvolvimento Evolucionário</td>
+
                         </tr>
 
                         <tr >
-                            <td colspan="5"><b>2.Quais das opções abaixo não descreve uma característica do Kanban?</b></td>
+                            <td colspan="5"><b>2.Quais das opções abaixo não descreve uma característica do Kanban?</b> <button class="btn btn-success btn getAnswer">Ver Resposta</button></td>
                         </tr>
                         <tr>
                             <td>A: Transparência</td>
-                            <td>B: Adaptação</td>
+                            <td class="correctAnswer">B: Adaptação</td>
                             <td>C: Diversificação</td>
                             <td>D: Disciplina</td>
                             <td>E: Priorização</td>
                         </tr>
 
                         <tr >
-                            <td colspan="5"><b>3.É um dos princípios da metodologia Lean:</b></td>
+                            <td colspan="5"><b>3.É um dos princípios da metodologia Lean:</b> <button class="btn btn-success btn getAnswer">Ver Resposta</button></td>
                         </tr>
                         <tr>
-                            <td>A: Documentação formal</td>
+                            <td class="correctAnswer">A: Documentação formal</td>
                             <td>B: Baka Yoke</td>
                             <td>C: Dinamismo funcional</td>
                             <td>D: Poka Yoke</td>
@@ -115,12 +153,12 @@
                         </tr>
 
                         <tr >
-                            <td colspan="5"><b>4.Com relação à metodologia Lean, quais são os 5 “S”?</b></td>
+                            <td colspan="5"><b>4.Com relação à metodologia Lean, quais são os 5 “S”?</b> <button class="btn btn-success btn getAnswer">Ver Resposta</button></td>
                         </tr>
                         <tr>
                             <td>A: Shinu; Shimaru; Shinjiru; Shaberu; Shiru</td>
                             <td>B: Selecionar; Salvar; Servir; Sombrear; Segregar</td>
-                            <td>C: Simular; Sinalizar, Substituir; Subdelegar; Salientar</td>
+                            <td class="correctAnswer">C: Simular; Sinalizar, Substituir; Subdelegar; Salientar</td>
                             <td>D: Sort; Set in order; Shine; Standardize; Sustain</td>
                             <td>E: Save; Sack; Satisfy; Say; Scater</td>
                         </tr>
@@ -128,37 +166,38 @@
                             <td colspan="5">
                                 <b>5.A Figura a seguir demonstra a atividade de qual característica do Lean?</b>
                                 <img src="../img/lean.jpg">
+                                <br><button class="btn btn-success btn getAnswer">Ver Resposta</button>
                             </td>
                         </tr>
                         <tr>
                             <td>A: Poka Yoke</td>
                             <td>B: Jidoka</td>
                             <td>C: JIT (Just in Time)</td>
-                            <td>D: 5S</td>
+                            <td class="correctAnswer">D: 5S</td>
                             <td>E: Manutenção Produtiva Total</td>
                         </tr>
                         <tr >
-                            <td colspan="5"><b>6.Qual o diagrama que é muito utilizado no Lean?</b></td>
+                            <td colspan="5"><b>6.Qual o diagrama que é muito utilizado no Lean?</b> <button class="btn btn-success btn getAnswer">Ver Resposta</button></td>
                         </tr>
                         <tr>
                             <td>A: Diagrama de objetos</td>
                             <td>B: Diagrama de barras</td>
                             <td>C: Diagrama de pizza</td>
                             <td>D: Diagrama de espaguete</td>
-                            <td>E: Diagrama de bolo Kasutera</td>
+                            <td class="correctAnswer">E: Diagrama de bolo Kasutera</td>
                         </tr>
                         <tr >
-                            <td colspan="5"><b>7.Qual dos princípios fundamentais apresentados não pertence ao MSF?</b></td>
+                            <td colspan="5"><b>7.Qual dos princípios fundamentais apresentados não pertence ao MSF?</b> <button class="btn btn-success btn getAnswer">Ver Resposta</button></td>
                         </tr>
                         <tr>
                             <td>A: Visão de projeto compartilhado</td>
                             <td>B: Mais poderes aos membros da equipa</td>
-                            <td>C: Aprender com todas as experiências</td>
+                            <td class="correctAnswer">C: Aprender com todas as experiências</td>
                             <td>D: Foco no cliente</td>
                             <td>E: Foco no negócio</td>
                         </tr>
                         <tr >
-                            <td colspan="5"><b>8.São metodologias com foco em em desenvolvimento:</b></td>
+                            <td colspan="5"><b>8.São metodologias com foco em em desenvolvimento:</b> <button class="btn btn-success btn getAnswer">Ver Resposta</button></td>
                         </tr>
                         <tr>
                             <td>A: XP; Lean; MSF</td>
@@ -168,7 +207,7 @@
                             <td>E: Lean; MSF; RUP</td>
                         </tr>
                         <tr >
-                            <td colspan="5"><b>9.Quais são as três disciplinas assumidas pelo MSF?</b></td>
+                            <td colspan="5"><b>9.Quais são as três disciplinas assumidas pelo MSF?</b> <button class="btn btn-success btn getAnswer">Ver Resposta</button></td>
                         </tr>
                         <tr>
                             <td>A: Gestão da disciplina de projeto; Gestão da disciplina de risco; Gestão da disciplina de software</td>
@@ -178,7 +217,7 @@
                             <td>E: Gestão da disciplina de aprendizado;  Gestão da disciplina de projeto; Gestão da disciplina de risco</td>
                         </tr>
                         <tr >
-                            <td colspan="5"><b>10.O MSF funciona sob dois modelos:</b></td>
+                            <td colspan="5"><b>10.O MSF funciona sob dois modelos:</b> <button class="btn btn-success btn getAnswer">Ver Resposta</button></td>
                         </tr>
                         <tr>
                             <td>A: Modelo de Equipa; Modelo de Processos</td>
