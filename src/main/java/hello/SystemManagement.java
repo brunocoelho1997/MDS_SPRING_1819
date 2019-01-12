@@ -169,10 +169,11 @@ public class SystemManagement {
 
         for(Team team : teamList)
         {
-            results += "Equipa " + team.getNumber() + " tem " + team.totalPoints + " pontos!\n";
+            results += "Equipa " + team.getNumber() + " tem " + team.totalPoints + " pontos! \n";
         }
 
-
+        if(results.isEmpty())
+            results+="Sem resultados de equipas.";
         return results;
     }
 

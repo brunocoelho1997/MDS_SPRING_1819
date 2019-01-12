@@ -32,8 +32,20 @@
 
                 $.ajax(opt).done(function (result) {
 
-                    $("#resultsString").text(result);
 
+                    if(result!=null)
+                    {
+                        $("#resultsString").text("");
+                        var str = result.split("\n");
+                        for(var i = 0; i < str.length; i++)
+                        {
+                            var textoAntigo = $("#resultsString").text();
+                            $("#resultsString").append(str[i] + '<br>');
+                        }
+
+                    }
+                    else
+                        $("#resultsString").text("Sem resultados de equipas.");
 
 
 
@@ -52,9 +64,6 @@
                             break;
                         }
                     }
-
-
-
                 });
             });
 
@@ -87,7 +96,7 @@
                     <tbody>
                     <div th:each="ad,rowStat : *{teams}">
                         <tr >
-                            <td class="w3-container w3-blue">
+                            <td class="w3-container bg-primary">
                                 <b  th:text="'Equipa ' + ${ad.getNumber()}" />
                             </td>
                         </tr>
@@ -103,10 +112,20 @@
                     </tbody>
                 </table>
             </div>
-            <div class="col-sm-4"></div>
-        </div>
+            <div class="col-sm-2">
+                <br>
+                <br>
+                <br>
+                <br>
 
-        <p id ="resultsString"></p>
+                <div class="panel panel-primary resultsPanel">
+                    <div class="panel-heading">Lista de Resultados</div>
+                    <div class="panel-body"><div id ="resultsString">Sem resultados de equipas.</div></div>
+                </div>
+            </div>
+            <div class="col-sm-2"></div>
+
+        </div>
 
         <div class="row">
             <div class="col-sm-3"></div>
