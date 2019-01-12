@@ -34,7 +34,7 @@
 
                     $("#resultsString").text(result);
 
-                    /*
+
 
 
                     var correctAnswers = $(".correctAnswer");
@@ -46,12 +46,14 @@
                         //alert(color);
                         if(color == "")
                         {
-                            correctAnswers[i].style.background = "blue";
+                            correctAnswers[i].style.background = "#badfad";
+                            correctAnswers[i].style.fontWeight = "bold";
+
                             break;
                         }
                     }
 
-*/
+
 
                 });
             });
@@ -122,8 +124,8 @@
                             <td colspan="5"><b>1.Quais são os princípios do kanban?</b> <button class="btn btn-success btn getAnswer">Ver Resposta</button></td>
                         </tr>
                         <tr>
-                            <td class="correctAnswer"> A: Cadeia de informações válidas ao desenvolvimento; Ilustrações técnicas </td>
-                            <td>B: Visualização da Cadeia de Valor; Desenvolvimento Evolucionário; Restrição do trabalho e seu progresso em torno das suas fases</td>
+                            <td> A: Cadeia de informações válidas ao desenvolvimento; Ilustrações técnicas </td>
+                            <td class="correctAnswer">B: Visualização da Cadeia de Valor; Desenvolvimento Evolucionário; Restrição do trabalho e seu progresso em torno das suas fases</td>
                             <td>C: Visualização da cadeia de valor; Ilustrações técnicas; Restrição do trabalho e seu progresso em torno de suas fases</td>
                             <td>D: Cadeia de informações válidas ao desenvolvimento; Desenvolvimento evolucionário</td>
                             <td>E: Restrição do trabalho e seu progresso em torno das suas fases; Cadeia de informações válidas ao desenvolvimento; Desenvolvimento Evolucionário</td>
@@ -135,8 +137,8 @@
                         </tr>
                         <tr>
                             <td>A: Transparência</td>
-                            <td class="correctAnswer">B: Adaptação</td>
-                            <td>C: Diversificação</td>
+                            <td>B: Adaptação</td>
+                            <td class="correctAnswer">C: Diversificação</td>
                             <td>D: Disciplina</td>
                             <td>E: Priorização</td>
                         </tr>
@@ -145,10 +147,10 @@
                             <td colspan="5"><b>3.É um dos princípios da metodologia Lean:</b> <button class="btn btn-success btn getAnswer">Ver Resposta</button></td>
                         </tr>
                         <tr>
-                            <td class="correctAnswer">A: Documentação formal</td>
+                            <td>A: Documentação formal</td>
                             <td>B: Baka Yoke</td>
                             <td>C: Dinamismo funcional</td>
-                            <td>D: Poka Yoke</td>
+                            <td class="correctAnswer">D: Poka Yoke</td>
                             <td>E: Shih Tzu</td>
                         </tr>
 
@@ -158,22 +160,24 @@
                         <tr>
                             <td>A: Shinu; Shimaru; Shinjiru; Shaberu; Shiru</td>
                             <td>B: Selecionar; Salvar; Servir; Sombrear; Segregar</td>
-                            <td class="correctAnswer">C: Simular; Sinalizar, Substituir; Subdelegar; Salientar</td>
-                            <td>D: Sort; Set in order; Shine; Standardize; Sustain</td>
+                            <td>C: Simular; Sinalizar, Substituir; Subdelegar; Salientar</td>
+                            <td class="correctAnswer">D: Sort; Set in order; Shine; Standardize; Sustain</td>
                             <td>E: Save; Sack; Satisfy; Say; Scater</td>
                         </tr>
                         <tr >
                             <td colspan="5">
                                 <b>5.A Figura a seguir demonstra a atividade de qual característica do Lean?</b>
+                                <br>
                                 <img src="../img/lean.jpg">
                                 <br><button class="btn btn-success btn getAnswer">Ver Resposta</button>
+                                <br>
                             </td>
                         </tr>
                         <tr>
                             <td>A: Poka Yoke</td>
-                            <td>B: Jidoka</td>
+                            <td class="correctAnswer">B: Jidoka</td>
                             <td>C: JIT (Just in Time)</td>
-                            <td class="correctAnswer">D: 5S</td>
+                            <td>D: 5S</td>
                             <td>E: Manutenção Produtiva Total</td>
                         </tr>
                         <tr >
@@ -183,8 +187,8 @@
                             <td>A: Diagrama de objetos</td>
                             <td>B: Diagrama de barras</td>
                             <td>C: Diagrama de pizza</td>
-                            <td>D: Diagrama de espaguete</td>
-                            <td class="correctAnswer">E: Diagrama de bolo Kasutera</td>
+                            <td class="correctAnswer">D: Diagrama de espaguete</td>
+                            <td>E: Diagrama de bolo Kasutera</td>
                         </tr>
                         <tr >
                             <td colspan="5"><b>7.Qual dos princípios fundamentais apresentados não pertence ao MSF?</b> <button class="btn btn-success btn getAnswer">Ver Resposta</button></td>
@@ -192,8 +196,8 @@
                         <tr>
                             <td>A: Visão de projeto compartilhado</td>
                             <td>B: Mais poderes aos membros da equipa</td>
-                            <td class="correctAnswer">C: Aprender com todas as experiências</td>
-                            <td>D: Foco no cliente</td>
+                            <td>C: Aprender com todas as experiências</td>
+                            <td class="correctAnswer">D: Foco no cliente</td>
                             <td>E: Foco no negócio</td>
                         </tr>
                         <tr >
@@ -202,7 +206,7 @@
                         <tr>
                             <td>A: XP; Lean; MSF</td>
                             <td>B: XP; Kanban; MSF</td>
-                            <td>C: XP; RUP; MSF</td>
+                            <td class="correctAnswer">C: XP; RUP; MSF</td>
                             <td>D: RUP; MSF ; Lean</td>
                             <td>E: Lean; MSF; RUP</td>
                         </tr>
@@ -214,13 +218,13 @@
                             <td>B: Gestão da disciplina de risco; Gestão da disciplina de sistemas; Gestão da disciplina de projeto</td>
                             <td>C: Gestão da disciplina de software; Gestão da disciplina de risco; Gestão da disciplina de equipas</td>
                             <td>D: Gestão da disciplina de sistemas; Gestão da disciplina de projeto; Gestão da disciplina de equipas</td>
-                            <td>E: Gestão da disciplina de aprendizado;  Gestão da disciplina de projeto; Gestão da disciplina de risco</td>
+                            <td class="correctAnswer">E: Gestão da disciplina de aprendizado;  Gestão da disciplina de projeto; Gestão da disciplina de risco</td>
                         </tr>
                         <tr >
                             <td colspan="5"><b>10.O MSF funciona sob dois modelos:</b> <button class="btn btn-success btn getAnswer">Ver Resposta</button></td>
                         </tr>
                         <tr>
-                            <td>A: Modelo de Equipa; Modelo de Processos</td>
+                            <td class="correctAnswer">A: Modelo de Equipa; Modelo de Processos</td>
                             <td>B: Modelo de Processos; Modelo de Software</td>
                             <td>C: Modelo de Software; Modelo de projetos</td>
                             <td>D: Modelo de Disciplinas; Modelo de Equipas</td>

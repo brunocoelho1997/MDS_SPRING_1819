@@ -15,6 +15,21 @@ import java.util.List;
 @Controller
 public class MainController {
 
+
+    /*
+
+    CONTROLADORES:
+    dasbboard - para consultar jogo no quadro
+    setteams - para equipas registarem equipas
+    setanswer - para jogadores chamarem enquanto apostam
+    get_results - responde uma String com score
+
+    pode vir dar jeito:
+    removeteam?teamNumber=X
+    clearallanswers - apaga todas as respostas dadas até ao momento (apenas apra a x pergunta atual)
+    setactualquestion - caso a actual question necessite de ser muadada .... (vai de 0-10 visto q existem 10 questoes)
+    resetgame - Realiza reset ao jogo. Apenas as equipas continuam definidas.
+     */
     @Autowired
     SystemManagement systemManagement;
 
@@ -41,28 +56,6 @@ public class MainController {
 
         model.addAttribute("teams", teamList);
 
-
-
-        /*
-        <!DOCTYPE html>
-        <html>
-        <body>
-
-        <h2>HTML Iframes</h2>
-        <p>You can use the height and width attributes to specify the size of the iframe:</p>
-
-        <iframe src="https://docs.google.com/spreadsheets/d/e/2PACX-1vSQ1QnzpFeFU8biZgnG6n_ff_X93LiLtojrfqSFG1P9-TUlfZqMybfXLsr0O_afyR3BmpLInDgtS1pC/pubhtml?gid=274706901&amp;single=true&amp;widget=true&amp;headers=false"
-
-        style="height:500px;width:500px;"
-
-        ></iframe>
-
-        </body>
-        </html>
-
-         */
-
-
         return "dashboarddemo1";
     }
 
@@ -72,19 +65,6 @@ public class MainController {
 
         return "dashboard";
     }
-
-
-
-
-    @GetMapping("/greeting")
-    public String greeting(@RequestParam(name="name", required=false, defaultValue="World") String name, Model model) {
-        model.addAttribute("name", name);
-        List<String> listPlayers = new ArrayList<>();
-        model.addAttribute("listPlayers", listPlayers);
-
-        return "greeting";
-    }
-
 
     @GetMapping("/setteams")
     public String setTeams(Model model) {
@@ -128,10 +108,30 @@ public class MainController {
 
     @GetMapping("/clearallanswers")
     @ResponseBody
-    public String clearAllAnswers(@RequestParam(name="teamNumber") String teamNumber, Model model) {
+    public String clearAllAnswers(Model model) {
 
         systemManagement.getAnsweList().clear();
+
+        System.out.println("\n\n\n\n\n asnwer list " + systemManagement.getAnsweList());
+
         return "Apagou todas as respostas para questão atual";
+    }
+
+    @GetMapping("/setactualquestion")
+    @ResponseBody
+    public String setActualQuestion(@RequestParam(name="questionNumber") int questionNumber, Model model) {
+
+        systemManagement.setAtualQuestion(questionNumber);
+        return "Definiu a question atual";
+    }
+
+    @GetMapping("/resetgame")
+    @ResponseBody
+    public String resetGame(Model model) {
+
+        systemManagement.resetGame();
+
+        return "Foi realizado reset ao jogo. Apenas as equipas ficaram definidas.";
     }
 
     @PostMapping("/setanswer")
@@ -153,6 +153,8 @@ public class MainController {
     public String get_statics(Model model) {
 
         String results = systemManagement.getResults();
+        System.out.println("\n\n\n\n\n asnwer list " + systemManagement.getAnsweList());
+
         return results;
 
     }

@@ -21,14 +21,15 @@ public class SystemManagement {
     List<String> possibleAnswersList;
 
     public SystemManagement() {
-        this.corretAnswers.put("1", "A");
-        this.corretAnswers.put("2", "A");
-        this.corretAnswers.put("3", "A");
-        this.corretAnswers.put("4", "A");
-        this.corretAnswers.put("5", "A");
-        this.corretAnswers.put("6", "A");
-        this.corretAnswers.put("8", "A");
-        this.corretAnswers.put("9", "A");
+        this.corretAnswers.put("1", "B");
+        this.corretAnswers.put("2", "C");
+        this.corretAnswers.put("3", "D");
+        this.corretAnswers.put("4", "D");
+        this.corretAnswers.put("5", "B");
+        this.corretAnswers.put("6", "D");
+        this.corretAnswers.put("7", "D");
+        this.corretAnswers.put("8", "C");
+        this.corretAnswers.put("9", "E");
         this.corretAnswers.put("10", "A");
 
         this.atualQuestion = 1;
@@ -57,10 +58,34 @@ public class SystemManagement {
         this.answerList = answerList;
     }
 
+    public int getAtualQuestion() {
+        return atualQuestion;
+    }
+
+    public void setAtualQuestion(int atualQuestion) {
+        this.atualQuestion = atualQuestion;
+    }
+
+
+    /*
+    auxiliar methods
+     */
     public void processAnswer(Answer answer) {
 
         try
         {
+            Team teamTmp = null;
+            for(Team team : teamList)
+            {
+                if(team.getNumber()==answer.getTeamNumber())
+                {
+                    teamTmp = team;
+                    break;
+                }
+            }
+            if(teamTmp == null || teamTmp.getTotalPoints()<=0)
+                return;
+
             if(Integer.parseInt(answer.getQuestion()) != atualQuestion)
                 return;
 
@@ -70,7 +95,7 @@ public class SystemManagement {
             if(answer.getBet()<=0)
                 return;
 
-            if(teamList.get(answer.getTeamNumber()-1).totalPoints <= answer.bet)
+            if(teamTmp.totalPoints < answer.bet)
                 return;
 
             for(Answer answerTmp : answerList)
@@ -111,7 +136,7 @@ public class SystemManagement {
                 }
             }
 
-            if(!teamAnswed)
+            if(!teamAnswed && teamTmp.getTotalPoints()>0)
                 teamTmp.setTotalPoints(teamTmp.getTotalPoints() - 1);
         }
         answerList.clear();
@@ -125,6 +150,15 @@ public class SystemManagement {
         if(correctAnswer.equals(answerTmp.answer))
             return true;
         return false;
+    }
+
+    public void resetGame(){
+        this.atualQuestion = 1;
+        answerList.clear();
+        for(Team team : teamList)
+        {
+            team.setTotalPoints(10);
+        }
     }
 
     public String getResults(){
@@ -141,4 +175,6 @@ public class SystemManagement {
 
         return results;
     }
+
+
 }
