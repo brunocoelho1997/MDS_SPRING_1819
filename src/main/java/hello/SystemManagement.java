@@ -21,13 +21,13 @@ public class SystemManagement {
     List<String> possibleAnswersList;
 
     public SystemManagement() {
-        this.corretAnswers.put("1", "B");
+        this.corretAnswers.put("1", "C");
         this.corretAnswers.put("2", "C");
         this.corretAnswers.put("3", "D");
         this.corretAnswers.put("4", "D");
         this.corretAnswers.put("5", "B");
         this.corretAnswers.put("6", "D");
-        this.corretAnswers.put("7", "D");
+        this.corretAnswers.put("7", "C");
         this.corretAnswers.put("8", "C");
         this.corretAnswers.put("9", "E");
         this.corretAnswers.put("10", "A");
